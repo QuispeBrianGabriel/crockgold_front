@@ -7,9 +7,12 @@
 # (r, o, q…) aunque su salida pase por el filtro de awk. `-W interactive`
 # evita que mawk acumule la salida en bloques (sin él no se ve nada hasta salir).
 #
+# Si existe la variable de entorno API_URL, se pasa al build como URL de la API.
+#
 # Uso: scripts/serve.sh [args de ng serve…]
 # -----------------------------------------------------------------------------
 cmd="npx ng serve"
+if [[ -n "${API_URL:-}" ]]; then cmd+=" --define $(printf '%q' "API_URL='${API_URL}'")"; fi
 for arg in "$@"; do cmd+=" $(printf '%q' "$arg")"; done
 
 script -qefc "$cmd" /dev/null | awk -W interactive '

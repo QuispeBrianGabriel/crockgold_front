@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    environment:
+      API_URL: ${API_URL:-}
     ports:
       - '127.0.0.1:${WEB_PORT}:4200'
     volumes:
