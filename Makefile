@@ -28,7 +28,7 @@ NAME ?=
 V    ?=
 
 .PHONY: setup help tree \
-        install run stop \
+        install run \
         check test format format-check \
         build clean \
         component service \
@@ -59,7 +59,6 @@ help:
 	@printf "$(TITLE)" "🚀 Aplicación"
 	@printf $(ITEM) "install"       "📥 Instala las dependencias (npm ci)"
 	@printf $(ITEM) "run"           "▶️  Arranca la app en :4200"
-	@printf $(ITEM) "stop"          "⏹️  Detiene la app y libera el 4200"
 
 	@printf "$(TITLE)" "🧪 Calidad"
 	@printf $(ITEM) "check"         "✅ Lo mismo que el pipeline"
@@ -100,9 +99,6 @@ install:
 
 run:
 	@$(GRACEFUL) "⏹️  App detenida correctamente" npx ng serve
-
-stop:
-	@scripts/stop.sh
 
 # =============================================================================
 #  🧪 Calidad
