@@ -8,10 +8,14 @@ RUN --mount=type=cache,target=/root/.npm npm ci --no-audit --no-fund
 COPY angular.json tsconfig.json tsconfig.app.json ./
 COPY public public
 COPY src src
-RUN npx ng build
+# En producción el navegador llama a /api en el mismo origen y nginx lo reenvía al core
+RUN npx ng build --define "API_URL='/api'"
 
 # ----- prod: imagen final mínima (nginx no-root) -----
 FROM nginxinc/nginx-unprivileged:1.30-alpine AS prod
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+# Al arrancar, la imagen sustituye las variables de entorno de la plantilla:
+# API_PRIVATE_URL (dirección privada del core) y NGINX_LOCAL_RESOLVERS (DNS del contenedor)
+ENV NGINX_ENTRYPOINT_LOCAL_RESOLVERS=1
+COPY docker/nginx.conf /etc/nginx/templates/default.conf.template
 COPY --from=build /app/dist/crockgold-front/browser /usr/share/nginx/html
 EXPOSE 8080
