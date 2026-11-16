@@ -22,6 +22,13 @@ Frontend en Angular 22 de [crockgold_core](https://github.com/QuispeBrianGabriel
    | `make component NAME=…` | Crea un componente                               |
    | `make release V=X.Y.Z`  | Publica una versión                              |
 
+## URL de la API
+
+El front llama a `auth/login` y `auth/register` del core. Cómo llega a él depende del ambiente:
+
+- **Desarrollo**: el navegador llama directo al core en `API_URL`, que se define en `docker/.env` y `make run` recoge. Tras cambiarla hay que recrear el contenedor. El core debe permitir el origen del front con su `FRONT_URL`.
+- **Producción**: el navegador llama a `/api` en el mismo dominio del front y nginx lo reenvía al core por la red privada. La dirección se da al arrancar el contenedor en `API_PRIVATE_URL` (en Railway, `http://${{Core.RAILWAY_PRIVATE_DOMAIN}}:8080`). Sin ella nginx no arranca.
+
 ## CI/CD
 
 - **Pipeline** (`.github/workflows/pipeline.yml`): en cada push ejecuta `npm run check`.
