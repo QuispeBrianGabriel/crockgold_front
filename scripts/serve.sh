@@ -4,14 +4,15 @@
 # Oculta el aviso de seguridad del host, la tabla de tamaños y las notas.
 #
 # `script` da a ng serve un terminal propio, así conserva colores y atajos
-# (r, o, q…) aunque su salida pase por el filtro de awk.
+# (r, o, q…) aunque su salida pase por el filtro de awk. `-W interactive`
+# evita que mawk acumule la salida en bloques (sin él no se ve nada hasta salir).
 #
 # Uso: scripts/serve.sh [args de ng serve…]
 # -----------------------------------------------------------------------------
 cmd="npx ng serve"
 for arg in "$@"; do cmd+=" $(printf '%q' "$arg")"; done
 
-script -qefc "$cmd" /dev/null | awk '
+script -qefc "$cmd" /dev/null | awk -W interactive '
 { line = $0; gsub(/\r|\033\[[?0-9;]*[A-Za-z]/, "", line) }
 
 # Aviso de seguridad: termina en "websocket connection issues."
