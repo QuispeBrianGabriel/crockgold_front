@@ -1,0 +1,23 @@
+# syntax=docker/dockerfile:1
+
+# ----- dev: entorno de desarrollo -----
+FROM node:24-bookworm
+
+# Versión del Angular CLI global (solo para `ng new` y comodidad en la terminal;
+# dentro del proyecto manda la versión fijada en package.json).
+ARG ANGULAR_CLI_VERSION=22
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git curl make tree \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g @angular/cli@${ANGULAR_CLI_VERSION} \
+    && npm cache clean --force
+
+# La imagen oficial ya trae el usuario `node` (uid 1000)
+USER node
+RUN mkdir -p /home/node/.npm /home/node/.claude
+ENV NG_CLI_ANALYTICS=false
+WORKDIR /app
+EXPOSE 4200
+CMD ["sleep", "infinity"]

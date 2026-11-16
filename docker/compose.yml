@@ -1,0 +1,16 @@
+name: crockgold_front
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "127.0.0.1:4200:4200"
+    volumes:
+      - ..:/app
+      - npm-cache:/home/node/.npm
+    init: true
+
+volumes:
+  npm-cache:
