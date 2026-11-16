@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "127.0.0.1:4200:4200"
+      - '127.0.0.1:${WEB_PORT}:4200'
     volumes:
       - ..:/app
       - npm-cache:/home/node/.npm

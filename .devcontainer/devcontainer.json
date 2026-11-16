@@ -3,13 +3,11 @@
   "dockerComposeFile": "../docker/compose.yml",
   "service": "web",
   "workspaceFolder": "/app",
-  "mounts": [
-    "source=claude-config,target=/home/node/.claude,type=volume"
-  ],
+  "mounts": ["source=claude-config,target=/home/node/.claude,type=volume"],
   "containerEnv": {
     "CLAUDE_CONFIG_DIR": "/home/node/.claude"
   },
-  "postCreateCommand": "if [ -f package.json ]; then npm install; fi",
+  "postCreateCommand": "npm ci",
   "forwardPorts": [4200],
   "portsAttributes": {
     "4200": {
