@@ -1,0 +1,17 @@
+# syntax=docker/dockerfile:1
+
+# ----- build: compilación de la app Angular -----
+FROM node:24-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm npm ci --no-audit --no-fund
+COPY angular.json tsconfig.json tsconfig.app.json ./
+COPY public public
+COPY src src
+RUN npx ng build
+
+# ----- prod: imagen final mínima (nginx no-root) -----
+FROM nginxinc/nginx-unprivileged:1.30-alpine AS prod
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist/crockgold-front/browser /usr/share/nginx/html
+EXPOSE 8080
