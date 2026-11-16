@@ -98,7 +98,7 @@ install:
 	@$(NPM) ci --no-audit --no-fund
 
 run:
-	@$(GRACEFUL) "⏹️  App detenida correctamente" npx ng serve
+	@$(GRACEFUL) "⏹️  App detenida correctamente" scripts/serve.sh
 
 # =============================================================================
 #  🧪 Calidad
