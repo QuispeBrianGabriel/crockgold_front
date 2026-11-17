@@ -29,20 +29,6 @@
     }
   }
 
-  &__line {
-    padding-top: 14vh;
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 4.6vw, 4.25rem);
-    font-weight: 300;
-    line-height: 1.04;
-    letter-spacing: -0.025em;
-
-    em {
-      color: var(--green-bright);
-      font-weight: 400;
-    }
-  }
-
   &__arcs {
     position: absolute;
     right: 0;
@@ -56,7 +42,7 @@
     }
   }
 
-  /* Ancho acotado por la columna y por la altura, para no pisar el titular */
+  /* Ancho acotado por la columna y por la altura */
   &__art {
     position: absolute;
     right: 4%;
@@ -132,7 +118,6 @@
   .brand {
     padding: 1.25rem 1.5rem;
 
-    &__line,
     &__arcs,
     &__art {
       display: none;
