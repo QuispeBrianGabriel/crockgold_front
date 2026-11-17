@@ -2,12 +2,13 @@
    Los estilos propios de cada componente van en su .scss */
 
 :root {
-  --ink: #0b0d0c;
-  --paper: #fcfcfa;
-  --green: #0f7b45;
-  --green-bright: #3bd27c;
-  --muted: #666b67;
-  --rule: #d5d8d2;
+  /* Sacada del duende: traje negro, chaleco y monedas de oro, piel y corbata verdes */
+  --ink: #12100c;
+  --paper: #fbf8f1;
+  --green: #2f6b1f;
+  --gold: #d9a836;
+  --muted: #6d675b;
+  --rule: #ddd5c4;
   --error: #b3261e;
 
   --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
@@ -68,7 +69,7 @@ body {
       box-shadow 0.15s;
 
     &::placeholder {
-      color: #a9ada8;
+      color: #b0a999;
     }
 
     &:focus {

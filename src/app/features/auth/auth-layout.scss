@@ -28,7 +28,7 @@
     letter-spacing: -0.01em;
 
     span {
-      color: var(--green-bright);
+      color: var(--gold);
     }
   }
 
@@ -37,10 +37,10 @@
     right: 0;
     bottom: 0;
     width: min(100%, 72vh);
-    stroke: #2c3530;
+    stroke: #3a3224;
 
     .is-lit {
-      stroke: var(--green-bright);
+      stroke: var(--gold);
       stroke-width: 2;
     }
   }
