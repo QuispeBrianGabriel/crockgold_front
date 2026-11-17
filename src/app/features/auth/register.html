@@ -1,4 +1,5 @@
 @if (done()) {
+  <img class="coin" src="favicon-64.png" width="64" height="64" alt="" />
   <h1>Cuenta <em>creada.</em></h1>
   <p class="lead" role="status">Ya puedes entrar con tu correo y tu contraseña.</p>
   <a class="btn" routerLink="/login">
@@ -40,7 +41,7 @@
         class="field__toggle"
         type="button"
         [attr.aria-pressed]="showPassword()"
-        aria-label="Mostrar contraseñas"
+        aria-label="Mostrar contraseña"
         (click)="showPassword.set(!showPassword())"
       >
         {{ showPassword() ? 'ocultar' : 'ver' }}
@@ -56,12 +57,21 @@
       <label for="register-confirm">Repite la contraseña</label>
       <input
         id="register-confirm"
-        [type]="showPassword() ? 'text' : 'password'"
+        [type]="showConfirm() ? 'text' : 'password'"
         formControlName="confirm"
         autocomplete="new-password"
         [attr.aria-invalid]="bad('confirm')"
         [attr.aria-describedby]="bad('confirm') ? 'register-confirm-error' : null"
       />
+      <button
+        class="field__toggle"
+        type="button"
+        [attr.aria-pressed]="showConfirm()"
+        aria-label="Mostrar la contraseña repetida"
+        (click)="showConfirm.set(!showConfirm())"
+      >
+        {{ showConfirm() ? 'ocultar' : 'ver' }}
+      </button>
       @if (bad('confirm')) {
         <p class="field__error" id="register-confirm-error">Las contraseñas no coinciden.</p>
       }

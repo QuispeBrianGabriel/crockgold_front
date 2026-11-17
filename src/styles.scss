@@ -2,18 +2,30 @@
    Los estilos propios de cada componente van en su .scss */
 
 :root {
-  /* Sacada del duende: traje negro, chaleco y monedas de oro, piel y corbata verdes */
-  --ink: #12100c;
-  --paper: #fbf8f1;
+  /* Sacada del duende: traje negro, chaleco y monedas de oro, piel y corbata
+     verdes, barba cobriza, el rubí de su mano y el papel del informe */
+  --ink: #14110b;
+  --night: #0c110b;
+  --paper: #f7f0dc;
+  --paper-hi: #fffbf0;
   --green: #2f6b1f;
+  --lime: #a9cc3f;
   --gold: #d9a836;
-  --muted: #6d675b;
-  --rule: #ddd5c4;
-  --error: #b3261e;
+  --gold-hi: #f6d877;
+  --gold-lo: #9a6a14;
+  --copper: #b8481a;
+  --muted: #6b624e;
+  --rule: #cfc29c;
+  --error: #b3182d;
 
-  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Oro pulido, como el del chaleco */
+  --gold-metal: linear-gradient(180deg, var(--gold-hi), var(--gold) 55%, #c08f24);
+  --focus: var(--lime);
+
+  /* Almendra, caligrafía de cuento, para lo que se ve de lejos;
+     Fraunces, serifa redondeada, para lo que se lee */
+  --font-display: 'Almendra', 'Fraunces Variable', Georgia, serif;
+  --font-body: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
 }
 
 *,
@@ -22,32 +34,43 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--night);
+}
+
+/* El fondo: la noche del bosque, con un foco verde donde está el duende */
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
+  min-height: 100dvh;
+  background:
+    radial-gradient(60rem 45rem at 28% 55%, #1d3a1b, transparent 70%),
+    radial-gradient(40rem 30rem at 95% 0%, rgb(217 168 54 / 0.1), transparent 70%), var(--night);
+  color: var(--paper);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.0625rem;
+  /* Serifas redondeadas, a juego con el volumen del personaje */
+  font-variation-settings: 'SOFT' 100;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 :focus-visible {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
 
-/* ----- Campo: etiqueta pequeña en mono y una sola línea como borde ----- */
+/* ----- Campo: etiqueta en versalitas sobre una caja de papel claro ----- */
 .field {
   position: relative;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 
   label {
     display: block;
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
+    margin-bottom: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
     transition: color 0.15s;
@@ -56,110 +79,166 @@ body {
   input {
     display: block;
     width: 100%;
-    padding: 0.5rem 0 0.625rem;
-    border: 0;
-    border-bottom: 1px solid var(--ink);
-    border-radius: 0;
-    background: transparent;
+    height: 3.5rem;
+    padding: 0 1rem;
+    border: 1.5px solid var(--rule);
+    border-radius: 0.875rem;
+    background: var(--paper-hi);
+    box-shadow: inset 0 2px 3px rgb(20 17 11 / 0.06);
     color: var(--ink);
     font: inherit;
-    font-size: 1.0625rem;
+    font-size: 1.1875rem;
     transition:
       border-color 0.15s,
       box-shadow 0.15s;
 
     &::placeholder {
-      color: #b0a999;
+      color: #a89d80;
+    }
+
+    &:hover {
+      border-color: var(--gold);
     }
 
     &:focus {
       outline: none;
       border-color: var(--green);
-      box-shadow: 0 1px 0 var(--green);
+      box-shadow: 0 0 0 3px rgb(47 107 31 / 0.2);
     }
+  }
+
+  &:has(.field__toggle) input {
+    padding-right: 5.5rem;
   }
 
   &:focus-within label {
     color: var(--green);
   }
 
-  /* Botón «ver / ocultar» de la contraseña */
+  /* Botón «ver / ocultar» de la contraseña, dentro de la caja */
   &__toggle {
     position: absolute;
     top: 1.5rem;
     right: 0;
-    padding: 0.375rem 0 0.375rem 0.75rem;
+    height: 3.5rem;
+    padding: 0 1rem;
     border: 0;
-    background: var(--paper);
+    border-radius: 0.875rem;
+    background: none;
     color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font: inherit;
+    font-size: 0.9375rem;
+    font-style: italic;
     cursor: pointer;
 
     &:hover {
       color: var(--ink);
+    }
+
+    &:focus-visible {
+      outline-offset: -4px;
     }
   }
 
   &__error {
     margin: 0.375rem 0 0;
     color: var(--error);
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
   }
 
   &--bad {
-    label {
+    label,
+    &:focus-within label {
       color: var(--error);
     }
 
-    input {
+    input,
+    input:hover,
+    input:focus {
       border-color: var(--error);
+    }
+
+    input:focus {
+      box-shadow: 0 0 0 3px rgb(179 24 45 / 0.18);
     }
   }
 }
 
-/* ----- Botón principal: bloque negro que se vuelve verde ----- */
+/* ----- Botón principal: un lingote de oro que se hunde al pulsarlo ----- */
 .btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem 1.25rem;
+  margin-top: 0.5rem;
+  padding: 0.875rem 0.875rem 0.875rem 1.5rem;
   border: 0;
-  border-radius: 0;
-  background: var(--ink);
-  color: var(--paper);
-  font: inherit;
-  font-weight: 500;
+  border-radius: 1rem;
+  background: var(--gold-metal);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.6),
+    inset 0 -2px 0 rgb(122 80 8 / 0.3),
+    0 3px 0 var(--gold-lo),
+    0 0.875rem 1.5rem -0.625rem rgb(154 106 20 / 0.7);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s,
+    filter 0.2s;
 
+  /* La flecha va en un botón negro, como los del traje */
   &__arrow {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    background: var(--ink);
+    color: var(--gold-hi);
     transition: transform 0.2s;
   }
 
   &:hover:not(:disabled) {
-    background: var(--green);
+    filter: brightness(1.06);
 
     .btn__arrow {
-      transform: translateX(0.375rem);
+      transform: translateX(0.25rem);
     }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.6),
+      inset 0 -2px 0 rgb(122 80 8 / 0.3),
+      0 1px 0 var(--gold-lo),
+      0 0.375rem 0.75rem -0.375rem rgb(154 106 20 / 0.7);
   }
 
   &:disabled {
     cursor: progress;
-    opacity: 0.6;
+    filter: saturate(0.5);
+    opacity: 0.7;
   }
 }
 
 /* ----- Aviso del servidor ----- */
 .notice {
   margin: 0 0 1.5rem;
-  padding-left: 0.875rem;
-  border-left: 2px solid var(--error);
+  padding: 0.75rem 0.875rem;
+  border: 1px solid rgb(179 24 45 / 0.3);
+  border-radius: 0.75rem;
+  background: rgb(179 24 45 / 0.07);
   color: var(--error);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

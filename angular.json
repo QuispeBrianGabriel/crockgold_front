@@ -30,10 +30,10 @@
               }
             ],
             "styles": [
-              "@fontsource-variable/fraunces/wght.css",
-              "@fontsource-variable/fraunces/wght-italic.css",
-              "@fontsource/ibm-plex-mono/latin-400.css",
-              "@fontsource/ibm-plex-mono/latin-500.css",
+              "@fontsource-variable/fraunces/soft.css",
+              "@fontsource-variable/fraunces/soft-italic.css",
+              "@fontsource/almendra/latin-700.css",
+              "@fontsource/almendra/latin-700-italic.css",
               "src/styles.scss"
             ],
             "define": {

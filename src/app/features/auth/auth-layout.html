@@ -1,42 +1,41 @@
 <div class="auth">
-  <aside class="brand">
-    <p class="brand__mark">Crockgold<span>.</span></p>
+  <p class="mark">
+    <img src="favicon-64.png" width="32" height="32" alt="" />
+    Crockgold
+  </p>
 
-    <!-- Arcos concéntricos que nacen en la esquina: el arcoíris del crock of gold -->
-    <svg class="brand__arcs" viewBox="0 0 400 400" aria-hidden="true">
-      <g fill="none" stroke-width="1">
-        <circle cx="400" cy="400" r="90" />
-        <circle cx="400" cy="400" r="140" />
-        <circle cx="400" cy="400" r="190" />
-        <circle class="is-lit" cx="400" cy="400" r="240" />
-        <circle cx="400" cy="400" r="290" />
-        <circle cx="400" cy="400" r="340" />
-        <circle cx="400" cy="400" r="390" />
-      </g>
-    </svg>
-
-    <!-- El duende y su olla: lo que espera al final del arco -->
-    <img
-      class="brand__art"
-      src="leprechaun-640.webp"
-      srcset="leprechaun-400.webp 400w, leprechaun-640.webp 640w, leprechaun-960.webp 960w"
-      sizes="min(40vw, 68vh)"
-      width="640"
-      height="638"
-      alt=""
-      loading="lazy"
-      decoding="async"
-    />
+  <!-- El escenario: el duende bajo el foco, al final del arcoíris -->
+  <aside class="stage" aria-hidden="true">
+    <div class="stage__figure">
+      <i class="spark" style="--x: 3%; --y: 34%; --s: 1.125rem; --d: 0s"></i>
+      <i class="spark" style="--x: 80%; --y: 8%; --s: 0.75rem; --d: 1.2s"></i>
+      <i class="spark" style="--x: 93%; --y: 62%; --s: 0.875rem; --d: 2.3s; --c: #fff"></i>
+      <i class="spark" style="--x: -6%; --y: 70%; --s: 0.75rem; --d: 0.6s; --c: #fff"></i>
+      <i class="spark" style="--x: 18%; --y: 6%; --s: 1rem; --d: 2.9s"></i>
+      <i class="spark" style="--x: 55%; --y: -4%; --s: 0.625rem; --d: 1.8s; --c: #fff"></i>
+      <i class="spark" style="--x: 101%; --y: 30%; --s: 1.125rem; --d: 0.3s"></i>
+      <i class="spark" style="--x: 70%; --y: 96%; --s: 0.75rem; --d: 3.1s"></i>
+      <i class="spark" style="--x: 30%; --y: 101%; --s: 0.625rem; --d: 1.5s; --c: #fff"></i>
+      <i class="spark" style="--x: -3%; --y: 12%; --s: 0.625rem; --d: 2.1s"></i>
+      <img
+        src="leprechaun-640.webp"
+        srcset="leprechaun-400.webp 400w, leprechaun-640.webp 640w, leprechaun-960.webp 960w"
+        sizes="(max-width: 56rem) 14rem, min(39vw, 60vh)"
+        width="640"
+        height="638"
+        alt=""
+        decoding="async"
+      />
+    </div>
   </aside>
 
   <main class="panel">
-    <div class="panel__inner">
+    <!-- La hoja: el mismo papel del informe que lee el duende -->
+    <div class="sheet">
       <nav class="tabs" aria-label="Acceso">
-        <a routerLink="/login" routerLinkActive="is-active" ariaCurrentWhenActive="page">
-          <span>01</span> Entrar
-        </a>
+        <a routerLink="/login" routerLinkActive="is-active" ariaCurrentWhenActive="page">Entrar</a>
         <a routerLink="/register" routerLinkActive="is-active" ariaCurrentWhenActive="page">
-          <span>02</span> Crear cuenta
+          Crear cuenta
         </a>
       </nav>
 

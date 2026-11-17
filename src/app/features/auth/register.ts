@@ -34,6 +34,7 @@ export class Register {
     { validators: passwordsMatch },
   );
   protected readonly showPassword = signal(false);
+  protected readonly showConfirm = signal(false);
   protected readonly sending = signal(false);
   protected readonly error = signal('');
   protected readonly done = signal(false);
