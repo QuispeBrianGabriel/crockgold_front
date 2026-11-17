@@ -56,9 +56,16 @@
     }
   }
 
-  &__seed {
-    fill: var(--green-bright);
-    stroke: none;
+  /* Ancho acotado por la columna y por la altura, para no pisar el titular */
+  &__art {
+    position: absolute;
+    right: 4%;
+    bottom: 0;
+    width: min(88%, 58vh);
+    height: auto;
+    filter: drop-shadow(0 1.5rem 2.5rem rgb(0 0 0 / 0.55));
+    pointer-events: none;
+    user-select: none;
   }
 }
 
@@ -126,7 +133,8 @@
     padding: 1.25rem 1.5rem;
 
     &__line,
-    &__arcs {
+    &__arcs,
+    &__art {
       display: none;
     }
   }
