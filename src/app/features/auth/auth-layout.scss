@@ -7,6 +7,9 @@
 /* ----- Lado negro ----- */
 .brand {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   overflow: hidden;
   padding: 2.5rem 3rem;
   background: var(--ink);
@@ -42,13 +45,14 @@
     }
   }
 
-  /* Ancho acotado por la columna y por la altura */
+  /* Centrado en el espacio bajo la marca; ancho acotado por la columna y por la altura */
   &__art {
-    position: absolute;
-    right: 4%;
-    bottom: 0;
-    width: min(88%, 58vh);
+    position: relative;
+    z-index: 1;
+    align-self: center;
+    width: min(92%, 68vh);
     height: auto;
+    margin: auto 0;
     filter: drop-shadow(0 1.5rem 2.5rem rgb(0 0 0 / 0.55));
     pointer-events: none;
     user-select: none;
